@@ -67,24 +67,29 @@ function PlayerStandard:_update_crosshair_offset(t)
 	
 	managers.hud:set_crosshair_visible(true)
 	local weapon = self._equipped_unit:base()
-	local weapon_data = self._equipped_unit:base():weapon_tweak_data()
-	local crosshair_spread = ((21 - weapon_data.stats.spread) / 84)
+	local crosshair_spread = (weapon:_get_spread(self._unit) / 24) + 0.01
 
 	if self._shooting and self._crosshair_cooldown == 0.0 then
-		crosshair_spread = crosshair_spread + ((26 - weapon_data.stats.recoil) / 26) + 0.01
+		crosshair_spread = crosshair_spread + (weapon._recoil / 3) + 0.01
 		self._crosshair_cooldown = 0.1
 	end
 
-	if self._running then 
-		crosshair_spread = crosshair_spread + ((26 - weapon_data.stats.recoil) / 130) + 0.01
+	if SC and SC._data.sc_player_weapon_toggle or restoration and restoration.Options:GetValue("SC/SCWeapon") then
+		if self._running then 
+			crosshair_spread = crosshair_spread + (weapon._recoil / 12) + 0.01
+		end
+	else
+		if self._moving then
+			crosshair_spread = crosshair_spread + (weapon._recoil / 24) + 0.01
+		end
+
+		if self._running then 
+			crosshair_spread = crosshair_spread + (weapon._recoil / 24) + 0.01
+		end
 	end
 
 	if self._state_data.in_air then 
-		crosshair_spread = crosshair_spread + ((26 - weapon_data.stats.recoil) / 104) + 0.01
-	end
-	
-	if self._moving then
-		crosshair_spread = crosshair_spread + ((26 - weapon_data.stats.recoil) / 182) + 0.01
+		crosshair_spread = crosshair_spread + (weapon._recoil / 12) + 0.01
 	end
 
 	managers.hud:set_crosshair_offset(crosshair_spread)
