@@ -1,5 +1,5 @@
 Hooks:PostHook(PlayerStandard, "init", "CrosshairCooldownInit", function(self, unit)
-	self._crosshair_cooldown = 0.0
+	self._next_crosshair_jiggle = 0.0
 end)
 
 Hooks:PostHook(PlayerStandard, "update", "ActiveCrosshairMovement", function(self, t, dt)
@@ -44,7 +44,6 @@ Hooks:PostHook(PlayerStandard, "update", "ActiveCrosshairMovement", function(sel
 	end
 
 	self:_update_crosshair_offset(t)
-	self._crosshair_cooldown = math.max(0.0, self._crosshair_cooldown - dt)
 end)
 
 function PlayerStandard:_update_crosshair_offset(t)
@@ -69,27 +68,23 @@ function PlayerStandard:_update_crosshair_offset(t)
 	local weapon = self._equipped_unit:base()
 	local crosshair_spread = (weapon:_get_spread(self._unit) / 24) + 0.01
 
-	if self._shooting and self._crosshair_cooldown == 0.0 then
+	if self._shooting and t and self._next_crosshair_jiggle < t then
 		crosshair_spread = crosshair_spread + (weapon._recoil / 3) + 0.01
-		self._crosshair_cooldown = 0.1
+		self._next_crosshair_jiggle = t + 0.1 or 0.1
 	end
 
-	if SC and SC._data.sc_player_weapon_toggle or restoration and restoration.Options:GetValue("SC/SCWeapon") then
-		if self._running then 
-			crosshair_spread = crosshair_spread + (weapon._recoil / 12) + 0.01
-		end
-	else
+	if not (SC and SC._data.sc_player_weapon_toggle or restoration and restoration.Options:GetValue("SC/SCWeapon")) then
 		if self._moving then
 			crosshair_spread = crosshair_spread + (weapon._recoil / 24) + 0.01
 		end
+	end
 
-		if self._running then 
-			crosshair_spread = crosshair_spread + (weapon._recoil / 24) + 0.01
-		end
+	if self._running then 
+		crosshair_spread = crosshair_spread + (weapon._recoil / 24) + 0.01
 	end
 
 	if self._state_data.in_air then 
-		crosshair_spread = crosshair_spread + (weapon._recoil / 12) + 0.01
+		crosshair_spread = crosshair_spread + (weapon._recoil / 24) + 0.01
 	end
 
 	managers.hud:set_crosshair_offset(crosshair_spread)
