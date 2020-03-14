@@ -2,7 +2,7 @@
 	       "name" : "Dynamic Crosshairs Enhanced",
 	"description" : "Adds Payday: The Heist inspired crosshairs.",
 	     "author" : "Undeadsewer, Ravicale",
-	    "contact" : "undeadsewer@gmail.com",
+	    "contact" : "Ravicale#7594 on Discord",
 	"blt_version" :  2,
 	      "hooks" : [
 						{ "hook_id" : "lib/managers/hudmanager" 						, "script_path" : "lib/hudmanager.lua" 		},
