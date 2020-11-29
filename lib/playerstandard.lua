@@ -75,6 +75,10 @@ function PlayerStandard:_update_crosshair_offset(t)
         return
     end
 
+    if not self._next_crosshair_jiggle then
+        self._next_crosshair_jiggle = 0.0
+    end
+
     local weapon = self._equipped_unit:base()
 
     --Get current weapon's spread values to determine base size.
