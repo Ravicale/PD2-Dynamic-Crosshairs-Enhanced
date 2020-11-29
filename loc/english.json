@@ -1,0 +1,18 @@
+{
+	"DynamicCrosshairsOptionsButtonTitleID" : "Dynamic Crosshairs Enhanced",
+	"DynamicCrosshairsOptionsButtonDescID" : "Options for Dynamic Crosshairs Enhanced",
+	"DynamicCrosshairsGenericColorTitleID" : "Color",
+	"GenericColorDescID" : "Color when not aiming at something in particular.",
+	"DynamicCrosshairsFriendlyColorTitleID" : "Friendly Color",
+	"FriendlyColorDescID" : "Color when aiming at allies.",
+	"DynamicCrosshairsEnemyColorTitleID" : "Enemy Color",
+	"EnemyColorDescID" : "Color when aiming at enemies.",
+	"DynamicCrosshairsCivilianColorTitleID" : "CivilianColor",
+	"CivilianColorDescID" : "Color when aiming at civilians.",
+	"DynamicCrosshairsLMGIronSightsTitleID" : "LMG Iron Sights Compatibility",
+	"LMGIronSightsDescID" : "Enables hiding of the crosshair when aiming down sights with LMGs. Always enabled when using Restoration Mod.",
+	"DynamicCrosshairsMovementEffectsTitleID" : "Movement Effects",
+	"MovementEffectsDescID" : "Make the crosshair grow while you are moving, sprinting, or airborne when these don't impact the actual accuracy of the gun.",
+	"DynamicCrosshairsShootingEffectsTitleID" : "Shooting Effects",
+	"ShootingEffectsDescID" : "Make the crosshair grow while you are shooting when it doesn't impact the actual accuracy of the gun."
+}
