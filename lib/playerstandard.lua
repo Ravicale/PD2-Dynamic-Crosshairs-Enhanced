@@ -71,6 +71,10 @@ end)
 --Calculates the crosshair size.
 --Overwrite vanilla function to avoid potential weirdness.
 function PlayerStandard:_update_crosshair_offset(t)
+    if not alive(self._equipped_unit) then
+        return
+    end
+
     local weapon = self._equipped_unit:base()
 
     --Get current weapon's spread values to determine base size.
