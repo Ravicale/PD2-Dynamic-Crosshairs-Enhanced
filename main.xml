@@ -2,14 +2,19 @@
 	<Localization directory="loc" default="english.json">
 	</Localization>
 	<Options name="Options" save_file="DynamicCrosshairs.txt">
-        <options>
-             <option type="color" default_value="Color.white" name="GenericColor" desc_id="GenericColorDescID"/>
-             <option type="color" default_value="Color.red" name="EnemyColor" desc_id="EnemyColorDescID"/>
-             <option type="color" default_value="Color.green" name="FriendlyColor" desc_id="FriendlyColorDescID"/>
-             <option type="color" default_value="Color.blue" name="CivilianColor" desc_id="CivilianColorDescID"/>
-             <option type="bool" default_value="false" name="LMGIronSights" desc_id="LMGIronSightsDescID"/>
-             <option type="bool" default_value="true" name="MovementEffects" desc_id="MovementEffectsDescID"/>
-             <option type="bool" default_value="true" name="ShootingEffects" desc_id="ShootingEffectsDescID"/>
-        </options>
-    </Options>
+		<options>
+			<option type="color" default_value="Color.white" name="GenericColor" desc_id="GenericColorDescID"/>
+			<option type="color" default_value="Color.red" name="EnemyColor" desc_id="EnemyColorDescID"/>
+			<option type="color" default_value="Color.green" name="FriendlyColor" desc_id="FriendlyColorDescID"/>
+			<option type="color" default_value="Color.blue" name="CivilianColor" desc_id="CivilianColorDescID"/>
+			<divider name="tod_divider" size="16"/>
+			<option type="bool" default_value="false" name="CasingCrosshair"  desc_id="CasingCrosshairDescID"/>
+			<option type="bool" default_value="false" name="DownedCrosshair"  desc_id="DownedCrosshairDescID"/>
+			<option type="bool" default_value="false" name="TasedCrosshair"  desc_id="TasedCrosshairDescID"/>
+			<option type="bool" default_value="false" name="LMGIronSights" desc_id="LMGIronSightsDescID"/>
+			<divider name="tod_divider" size="16"/>
+			<option type="bool" default_value="true" name="MovementEffects" desc_id="MovementEffectsDescID"/>
+			<option type="bool" default_value="true" name="ShootingEffects" desc_id="ShootingEffectsDescID"/>
+		</options>
+	</Options>
 </mod>

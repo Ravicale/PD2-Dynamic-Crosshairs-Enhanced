@@ -60,7 +60,7 @@ Hooks:PostHook(PlayerStandard, "update", "ActiveCrosshairMovement", function(sel
         end
 
         --Update crosshair size.
-        self:_update_crosshair_offset(t)
+        self:_update_crosshair_scale(t)
     else
         --Hide the crosshair and set its size to 0 when it shouldn't be seen.
         managers.hud:set_crosshair_visible(false)
@@ -68,13 +68,13 @@ Hooks:PostHook(PlayerStandard, "update", "ActiveCrosshairMovement", function(sel
     end
 end)
 
---Calculates the crosshair size.
---Overwrite vanilla function to avoid potential weirdness.
+--Remove vanilla function since it's not used, but is still called in weird places.
 function PlayerStandard:_update_crosshair_offset(t)
-    if not alive(self._equipped_unit) then
-        return
-    end
+end
 
+--Calculates the crosshair size.
+--Don't use vanilla function to avoid weirdness.
+function PlayerStandard:_update_crosshair_scale(t)
     if not self._next_crosshair_jiggle then
         self._next_crosshair_jiggle = 0.0
     end
