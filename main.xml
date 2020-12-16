@@ -1,6 +1,12 @@
-<mod name="DynamicCrosshairs" global_key="DynamicCrosshairs" core_class="Core.lua">
+<?xml version="1.0"?>
+<mod name="DynamicCrosshairs" global_key="DynamicCrosshairs">
 	<Localization directory="loc" default="english.json">
 	</Localization>
+
+	<AddFiles directory="assets">
+		<texture path="guis/textures/crosshair"/>
+	</AddFiles>
+
 	<Options name="Options" save_file="DynamicCrosshairs.txt">
 		<options>
 			<option type="color" default_value="Color.white" name="GenericColor" desc_id="GenericColorDescID"/>
@@ -8,9 +14,12 @@
 			<option type="color" default_value="Color.green" name="FriendlyColor" desc_id="FriendlyColorDescID"/>
 			<option type="color" default_value="Color.blue" name="CivilianColor" desc_id="CivilianColorDescID"/>
 			<divider name="tod_divider" size="16"/>
-			<option type="bool" default_value="false" name="CasingCrosshair"  desc_id="CasingCrosshairDescID"/>
-			<option type="bool" default_value="false" name="DownedCrosshair"  desc_id="DownedCrosshairDescID"/>
-			<option type="bool" default_value="false" name="TasedCrosshair"  desc_id="TasedCrosshairDescID"/>
+			<option type="number" default_value="12" min="6" max="24" step="2" show_value="false" name="Length" desc_id="LengthDescID"/>
+			<option type="number" default_value="12" min="6" max="24" step="2" show_value="false" name="Thickness" desc_id="ThicknessDescID"/>
+			<divider name="tod_divider" size="16"/>
+			<option type="bool" default_value="false" name="CasingCrosshair" desc_id="CasingCrosshairDescID"/>
+			<option type="bool" default_value="false" name="DownedCrosshair" desc_id="DownedCrosshairDescID"/>
+			<option type="bool" default_value="false" name="TasedCrosshair" desc_id="TasedCrosshairDescID"/>
 			<option type="bool" default_value="false" name="LMGIronSights" desc_id="LMGIronSightsDescID"/>
 			<divider name="tod_divider" size="16"/>
 			<option type="bool" default_value="true" name="MovementEffects" desc_id="MovementEffectsDescID"/>

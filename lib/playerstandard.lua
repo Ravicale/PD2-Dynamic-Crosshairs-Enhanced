@@ -58,6 +58,9 @@ Hooks:PostHook(PlayerStandard, "update", "ActiveCrosshairMovement", function(sel
         else
             managers.hud:set_crosshair_color(DynamicCrosshairs.Options:GetValue("GenericColor"))
         end
+        
+        --Update hud's fov value. Easier and far less error prone to grab it here than there.
+        managers.hud:set_camera_fov(self._camera_unit:base()._fov.fov)
 
         --Update crosshair size.
         self:_update_crosshair_scale(t)
@@ -75,39 +78,35 @@ end
 --Calculates the crosshair size.
 --Don't use vanilla function to avoid weirdness.
 function PlayerStandard:_update_crosshair_scale(t)
-    if not self._next_crosshair_jiggle then
-        self._next_crosshair_jiggle = 0.0
-    end
-
     local weapon = self._equipped_unit:base()
 
     --Get current weapon's spread values to determine base size.
     -- "/ 24" keeps the size in check and very roughly matches the weapon's actual spread.
     -- the "+ 0.01" prevents the crosshair from clipping with itself.
-    local crosshair_spread = (weapon:_get_spread(self._unit) / 24) + 0.01
+    local crosshair_spread = weapon:_get_spread(self._unit)
 
     --Make crosshair grow when shooting. Has a cooldown so that fast firing weapons result in a satisfying jiggle.
     if DynamicCrosshairs.Options:GetValue("ShootingEffects") then
         if self._shooting and t and self._next_crosshair_jiggle < t then
-            crosshair_spread = crosshair_spread + (weapon._recoil / 3) + 0.01
-            self._next_crosshair_jiggle = t + 0.1 or 0.1
+            crosshair_spread = crosshair_spread + (weapon._recoil + 1) * 6
+            self._next_crosshair_jiggle = t + 0.1
         end
     end
 
     if DynamicCrosshairs.Options:GetValue("MovementEffects") then
         --Moving spread actually varies in Restoration Mod based on weapon stats, so we only need to manually change size in vanilla.
         if not SC and self._moving then
-            crosshair_spread = crosshair_spread + (weapon._recoil / 24) + 0.01
+            crosshair_spread = crosshair_spread + (weapon._recoil + 1) * 0.4
         end
 
         --Use weapon stability to change size when running.
         if self._running then 
-            crosshair_spread = crosshair_spread + (weapon._recoil / 24) + 0.01
+            crosshair_spread = crosshair_spread + (weapon._recoil + 1) * 0.4
         end
 
         --Use weapon stability to change size when in the air.
         if self._state_data.in_air then 
-            crosshair_spread = crosshair_spread + (weapon._recoil / 24) + 0.01
+            crosshair_spread = crosshair_spread + (weapon._recoil + 1) * 0.4
         end
     end
 
