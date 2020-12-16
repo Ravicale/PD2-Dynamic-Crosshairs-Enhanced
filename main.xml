@@ -14,8 +14,8 @@
 			<option type="color" default_value="Color.green" name="FriendlyColor" desc_id="FriendlyColorDescID"/>
 			<option type="color" default_value="Color.blue" name="CivilianColor" desc_id="CivilianColorDescID"/>
 			<divider name="tod_divider" size="16"/>
-			<option type="number" default_value="12" min="6" max="24" step="2" show_value="false" name="Length" desc_id="LengthDescID"/>
-			<option type="number" default_value="12" min="6" max="24" step="2" show_value="false" name="Thickness" desc_id="ThicknessDescID"/>
+			<option type="number" default_value="18" min="6" max="24" step="2" show_value="false" name="Length" desc_id="LengthDescID"/>
+			<option type="number" default_value="10" min="6" max="24" step="2" show_value="false" name="Thickness" desc_id="ThicknessDescID"/>
 			<divider name="tod_divider" size="16"/>
 			<option type="bool" default_value="false" name="CasingCrosshair" desc_id="CasingCrosshairDescID"/>
 			<option type="bool" default_value="false" name="DownedCrosshair" desc_id="DownedCrosshairDescID"/>
