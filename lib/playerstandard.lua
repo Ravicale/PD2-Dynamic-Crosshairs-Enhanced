@@ -78,6 +78,7 @@ end
 --Calculates the crosshair size.
 --Don't use vanilla function to avoid weirdness.
 function PlayerStandard:_update_crosshair_scale(t)
+
     local weapon = self._equipped_unit:base()
 
     --Get current weapon's spread values to determine base size.
@@ -87,7 +88,7 @@ function PlayerStandard:_update_crosshair_scale(t)
 
     --Make crosshair grow when shooting. Has a cooldown so that fast firing weapons result in a satisfying jiggle.
     if DynamicCrosshairs.Options:GetValue("ShootingEffects") then
-        if self._shooting and t and self._next_crosshair_jiggle < t then
+        if self._shooting and t and (not self._next_crosshair_jiggle or self._next_crosshair_jiggle < t) then
             crosshair_spread = crosshair_spread + (weapon._recoil + 1) * 6
             self._next_crosshair_jiggle = t + 0.1
         end
